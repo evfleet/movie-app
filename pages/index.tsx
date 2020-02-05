@@ -1,6 +1,6 @@
 const IndexPage = () => (
   <div>
-    <p>Hello World 123</p>
+    <p>Hello from Movies</p>
   </div>
 );
 
