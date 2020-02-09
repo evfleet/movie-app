@@ -1,13 +1,16 @@
 import React from "react";
 
-import TopBar from "../TopBar";
+import NavBar from "../NavBar";
+import { Container, Wrapper } from "../../shared/styled";
 
 const Layout = ({ children }) => {
   return (
     <React.Fragment>
-      <TopBar />
+      <NavBar />
 
-      <div>{children}</div>
+      <Wrapper>
+        <Container>{children}</Container>
+      </Wrapper>
     </React.Fragment>
   );
 };
