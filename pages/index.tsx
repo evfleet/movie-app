@@ -1,10 +1,12 @@
 import React from "react";
 
 import Layout from "../components/Layout";
+import HeroCarousel from "../components/HeroCarousel";
 
 const IndexPage = () => (
-  <Layout>
+  <Layout container={true}>
     <p>Hello from Movies 123</p>
+    <HeroCarousel />
   </Layout>
 );
 

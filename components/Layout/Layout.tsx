@@ -3,14 +3,25 @@ import React from "react";
 import NavBar from "../NavBar";
 import { Container, Wrapper } from "../../shared/styled";
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  container: boolean;
+}
+
+const Layout: React.FunctionComponent<LayoutProps> = ({
+  children,
+  container
+}) => {
   return (
     <React.Fragment>
       <NavBar />
 
-      <Wrapper>
-        <Container>{children}</Container>
-      </Wrapper>
+      {container ? (
+        <Wrapper>
+          <Container>{children}</Container>
+        </Wrapper>
+      ) : (
+        children
+      )}
     </React.Fragment>
   );
 };
