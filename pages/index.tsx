@@ -8,7 +8,6 @@ const IndexPage = () => (
   <Layout>
     <Wrapper>
       <Container>
-        <p>Hello from Movies 123</p>
         <Carousel />
       </Container>
     </Wrapper>
