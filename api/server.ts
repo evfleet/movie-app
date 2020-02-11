@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 import next from "next";
 import express from "express";
 
