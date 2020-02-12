@@ -2,7 +2,7 @@ import fetch from "isomorphic-unfetch";
 
 import Layout from "../components/Layout";
 import Carousel from "../components/Carousel";
-import { Container, Wrapper } from "../shared/styled";
+import { Container, Wrapper } from "../styles/components";
 
 const IndexPage = ({ results }) => {
   return (

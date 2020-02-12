@@ -1,5 +1,5 @@
 import { NavWrapper } from "./styled";
-import { Container } from "../../shared/styled";
+import { Container } from "../../styles/components";
 
 const NavBar = () => {
   return (
