@@ -3,7 +3,7 @@ import withRedux from "next-redux-wrapper";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
-import { initStore } from "../state/initStore";
+import { initStore } from "../stores/initStore";
 import theme from "../styles/theme";
 import "../styles/index.scss";
 
@@ -13,7 +13,7 @@ interface CustomAppProps {
   store: Store;
 }
 
-export default withRedux(initStore, { debug: true })(
+export default withRedux(initStore)(
   class CustomApp extends App<CustomAppProps> {
     static async getInitialProps({ Component, ctx }) {
       return {
