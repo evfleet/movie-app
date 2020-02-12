@@ -18,6 +18,10 @@ const IndexPage = ({ results }) => {
 };
 
 IndexPage.getInitialProps = async ({ isServer, store }) => {
+  // fired on first render on server
+  // fired on every routing change to page on client
+  console.log("get initial props fired");
+
   if (isServer) {
     store.dispatch({ type: "TEST_ACTION" });
   }
