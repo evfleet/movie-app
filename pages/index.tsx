@@ -1,5 +1,4 @@
 import fetch from "isomorphic-unfetch";
-import {} from "react";
 
 import Layout from "../components/Layout";
 import Carousel from "../components/Carousel";
