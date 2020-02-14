@@ -2,10 +2,14 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-import movieReducer from "./movies/reducer";
+import authReducer from "./auth/reducer";
+import entityReducer from "./entities/reducer";
+import pageReducer from "./pages/reducer";
 
 const rootReducer = combineReducers({
-  movies: movieReducer
+  auth: authReducer,
+  entities: entityReducer,
+  pages: pageReducer
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
