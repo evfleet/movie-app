@@ -1,5 +1,6 @@
 import App from "next/app";
 import withRedux from "next-redux-wrapper";
+import withReduxSaga from "next-redux-saga";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 
@@ -13,28 +14,28 @@ interface CustomAppProps {
   store: Store;
 }
 
-export default withRedux(initStore)(
-  class CustomApp extends App<CustomAppProps> {
-    static async getInitialProps({ Component, ctx }) {
-      return {
-        pageProps: {
-          ...(Component.getInitialProps
-            ? await Component.getInitialProps(ctx)
-            : {})
-        }
-      };
-    }
-
-    render() {
-      const { Component, pageProps, store } = this.props;
-
-      return (
-        <ThemeProvider theme={theme}>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </ThemeProvider>
-      );
-    }
+class CustomApp extends App<CustomAppProps> {
+  static async getInitialProps({ Component, ctx }) {
+    return {
+      pageProps: {
+        ...(Component.getInitialProps
+          ? await Component.getInitialProps(ctx)
+          : {})
+      }
+    };
   }
-);
+
+  render() {
+    const { Component, pageProps, store } = this.props;
+
+    return (
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+      </ThemeProvider>
+    );
+  }
+}
+
+export default withRedux(initStore)(withReduxSaga(CustomApp));

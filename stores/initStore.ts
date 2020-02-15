@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import thunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 
 import authReducer from "./auth/reducer";
 import entityReducer from "./entities/reducer";
@@ -15,9 +15,12 @@ const rootReducer = combineReducers({
 export type AppState = ReturnType<typeof rootReducer>;
 
 export const initStore = (initialState = {}) => {
-  return createStore(
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(
     rootReducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunk))
+    composeWithDevTools(applyMiddleware(sagaMiddleware))
   );
+
+  return store;
 };
