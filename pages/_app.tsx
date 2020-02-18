@@ -38,4 +38,5 @@ class CustomApp extends App<CustomAppProps> {
   }
 }
 
-export default withRedux(initStore)(withReduxSaga(CustomApp));
+export default withRedux(initStore)(CustomApp);
+// export default withRedux(initStore)(withReduxSaga(CustomApp));
