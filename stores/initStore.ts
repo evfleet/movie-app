@@ -1,10 +1,11 @@
-import { applyMiddleware, createStore, combineReducers } from "redux";
+import { applyMiddleware, createStore, combineReducers, Store } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware, { Task } from "redux-saga";
+import { all } from "redux-saga/effects";
 
-import authReducer from "./auth/reducer";
-import entityReducer from "./entities/reducer";
-import pageReducer from "./pages/reducer";
+import { authReducer } from "./auth";
+import { entityReducer, entitySaga } from "./entities";
+import { pageReducer } from "./pages";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,15 +13,27 @@ const rootReducer = combineReducers({
   pages: pageReducer
 });
 
+function* rootSaga() {
+  yield all([entitySaga()]);
+}
+
 export type AppState = ReturnType<typeof rootReducer>;
 
-export const initStore = (initialState = {}) => {
+export interface AppStore extends Store {
+  sagaTask: Task;
+}
+
+export const initStore = (initialState = {}, { isServer, req = null }) => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     rootReducer,
     initialState,
     composeWithDevTools(applyMiddleware(sagaMiddleware))
-  );
+  ) as AppStore;
+
+  if (req || !isServer) {
+    store.sagaTask = sagaMiddleware.run(rootSaga);
+  }
 
   return store;
 };

@@ -13,4 +13,6 @@ const MoviePage = () => {
   );
 };
 
+MoviePage.getInitialProps = async ({ isServer, store }) => {};
+
 export default MoviePage;
