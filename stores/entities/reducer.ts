@@ -14,8 +14,6 @@ const entityState: EntityState = {
 
 const entityReducer = (state = entityState, action: EntityActions) => {
   switch (action.type) {
-    case EntityActionTypes.UPDATE_ENTITY:
-    case EntityActionTypes.MERGE_ENTITIES:
     default:
       return state;
   }

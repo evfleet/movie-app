@@ -1,4 +1,5 @@
+import * as entityActions from "./actions";
 import entityReducer from "./reducer";
 import entitySaga from "./sagas";
 
-export { entityReducer, entitySaga };
+export { entityActions, entityReducer, entitySaga };

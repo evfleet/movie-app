@@ -16,6 +16,8 @@ interface CustomAppProps {
 
 class CustomApp extends App<CustomAppProps> {
   static async getInitialProps({ Component, ctx }) {
+    const { store } = ctx;
+
     return {
       pageProps: {
         ...(Component.getInitialProps

@@ -1,24 +1,44 @@
-import { ActionCreator } from "redux";
-
 export enum EntityActionTypes {
-  UPDATE_ENTITY = "UPDATE_ENTITY",
-  MERGE_ENTITIES = "MERGE_ENTITIES"
+  FETCH_ENTITIES = "FETCH_ENTITIES",
+  FETCH_ENTITIES_SUCCESS = "FETCH_ENTITIES_SUCCESS"
 }
 
-interface UpdateEntityAction {
-  type: EntityActionTypes.UPDATE_ENTITY;
+export interface FetchEntitiesAction {
+  type: EntityActionTypes.FETCH_ENTITIES;
+  payload: {
+    url: string;
+    page: string;
+  };
 }
 
-export const updateEntity: ActionCreator<UpdateEntityAction> = () => ({
-  type: EntityActionTypes.UPDATE_ENTITY
+export const fetchEntities = (
+  url: string,
+  page: string
+): FetchEntitiesAction => ({
+  type: EntityActionTypes.FETCH_ENTITIES,
+  payload: {
+    url,
+    page
+  }
 });
 
-interface MergeEntitiesAction {
-  type: EntityActionTypes.MERGE_ENTITIES;
+export interface FetchEntitiesSuccessAction {
+  type: EntityActionTypes.FETCH_ENTITIES_SUCCESS;
+  payload: {
+    page: string;
+    entities: {};
+  };
 }
 
-export const mergeEntities: ActionCreator<MergeEntitiesAction> = () => ({
-  type: EntityActionTypes.MERGE_ENTITIES
+export const fetchEntitiesSuccess = (
+  page: string,
+  entities
+): FetchEntitiesSuccessAction => ({
+  type: EntityActionTypes.FETCH_ENTITIES_SUCCESS,
+  payload: {
+    page,
+    entities
+  }
 });
 
-export type EntityActions = UpdateEntityAction | MergeEntitiesAction;
+export type EntityActions = FetchEntitiesAction | FetchEntitiesSuccessAction;
